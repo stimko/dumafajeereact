@@ -16,57 +16,12 @@ var DumafajeeStore = require('../stores/DumafajeeStore');
 
 function getStateFromStores() {
   return {
-    dumafajees: DumafajeeStore.getAllDumafajees()
+    items: DumafajeeStore.getAllDumafajees()
   };
 }
 
-var ThreadSection = React.createClass({
-
-  getInitialState: function() {
-    return getStateFromStores();
-  },
-
-  componentDidMount: function() {
-    DumafajeeStore.addChangeListener(this._onChange);
-  },
-
-  componentWillUnmount: function() {
-    DumafajeeStore.removeChangeListener(this._onChange);
-  },
-
-  render: function() {
-    var threadListItems = this.state.dumafajees.map(function(dumafajee) {
-      return (
-        <ThreadListItem
-          key={thread.id}
-          thread={thread}
-          currentThreadID={this.state.currentThreadID}
-        />
-      );
-    }, this);
-    var unread =
-      this.state.unreadCount === 0 ?
-      null :
-      <span>Unread threads: {this.state.unreadCount}</span>;
-    return (
-      <div className="thread-section">
-        <div className="thread-count">
-          {unread}
-        </div>
-        <ul className="thread-list">
-          {threadListItems}
-          </ul>
-      </div>
-    );
-  },
-
-  /**
-   * Event handler for 'change' events coming from the stores
-   */
-  _onChange: function() {
-    this.setState(getStateFromStores());
-  }
-
+var DumafajeePanel = React.createClass({
+  mixins: [CompoundView]
 });
 
 module.exports = ThreadSection;

@@ -10,7 +10,7 @@ DumafajeeUtil.getAllDumafajees();
 
 React.render(
     /*jshint ignore:start */
-    <DumafajeeApp />,
+    <DumafajeeApp/>,
     /*jshint ignore:end */
     document.getElementById('app')
 );
